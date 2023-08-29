@@ -1,4 +1,4 @@
-include <stdio.h>
+#include <stdio.h>
 //linear search
 int main() {
     int arr[100], key, n, found = 0;
