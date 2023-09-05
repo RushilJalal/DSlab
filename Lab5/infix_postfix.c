@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #define MAX 20
 
@@ -12,7 +11,7 @@ int isEmpty()
 
 int isFull()
 {
-    return top == MAX - 1;
+    return top == MAX - 1; // Fix the typo here
 }
 
 char peek()
@@ -69,30 +68,30 @@ int precedence(char ch)
     return -1;
 }
 
-int convert(char *expression) // input expression to be converted
+int convert(char *expression)
 {
     char output[MAX]; // answer array
     int i, j;
     for (i = 0, j = -1; expression[i] != '\0'; i++)
     {
         if (checkIfOperand(expression[i])) // it is operand(a,b)
-            output[++j] = expression[i];   // so it is directly added to output array
+            output[++j] = expression[i];   // so it is directly added to the output array
 
         else if (expression[i] == '(') // encountered open bracket
-            push(expression[i]);       // push ( to operator stack
+            push(expression[i]);       // push ( to the operator stack
 
         else if (expression[i] == ')') // encountered close bracket
         {
             while (!isEmpty() && peek() != '(')
             {
                 output[++j] = pop(); // pop all operators until '(' is encountered
-            }                        // or stack is left empty
-            // and add the popped operators to output array
+            }                        // or the stack is left empty
+            // and add the popped operators to the output array
 
-            if (isEmpty() && peek() != '(') // if stack empty and peek not equal to open bracket,
+            if (isEmpty() || peek() != '(') // Fixed condition
                 return -1;
 
-            else       // doubt
+            else       
                 pop(); // pop the operator
         }
 
@@ -100,7 +99,7 @@ int convert(char *expression) // input expression to be converted
         {
             while (!isEmpty() && precedence(expression[i]) <= precedence(peek()))
                 output[++j] = pop();
-            push(expression[i]);
+            push(expression[i]); // Push the operator onto the stack
         }
     }
     while (!isEmpty())
@@ -108,6 +107,7 @@ int convert(char *expression) // input expression to be converted
 
     output[++j] = '\0';
     printf("%s", output);
+    return 0; // Added return statement to indicate success
 }
 
 int main()
