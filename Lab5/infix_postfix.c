@@ -11,7 +11,7 @@ int isEmpty()
 
 int isFull()
 {
-    return top == MAX - 1; // Fix the typo here
+    return top == MAX - 1; 
 }
 
 char peek()
@@ -91,7 +91,7 @@ int convert(char *expression)
             if (isEmpty() || peek() != '(') // Fixed condition
                 return -1;
 
-            else       
+            else //doubt
                 pop(); // pop the operator
         }
 
@@ -107,7 +107,7 @@ int convert(char *expression)
 
     output[++j] = '\0';
     printf("%s", output);
-    return 0; // Added return statement to indicate success
+    return 0; 
 }
 
 int main()

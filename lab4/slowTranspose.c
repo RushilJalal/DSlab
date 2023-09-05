@@ -1,19 +1,24 @@
 #include <stdio.h>
 
 // Define a structure to represent a sparse matrix element
-typedef struct {
+typedef struct
+{
     int row;
     int col;
     int value;
 } MatrixElement;
 
 // Function to perform slow transpose of a sparse matrix
-void slowTranspose(MatrixElement input[], MatrixElement output[], int numRows, int numCols) {
+void slowTranspose(MatrixElement input[], MatrixElement output[], int numRows, int numCols)
+{
     int outputIndex = 0;
 
-    for (int j = 0; j < numCols; j++) {
-        for (int i = 0; i < numRows; i++) {
-            if (input[i].col == j) {
+    for (int j = 0; j < numCols; j++)
+    {
+        for (int i = 0; i < numRows; i++)
+        {
+            if (input[i].col == j)
+            {
                 output[outputIndex].row = input[i].col;
                 output[outputIndex].col = input[i].row;
                 output[outputIndex].value = input[i].value;
@@ -23,7 +28,8 @@ void slowTranspose(MatrixElement input[], MatrixElement output[], int numRows, i
     }
 }
 
-int main() {
+int main()
+{
     // Define the size of the matrix
     int numRows, numCols;
 
@@ -42,7 +48,8 @@ int main() {
     scanf("%d", &numNonZero);
 
     printf("Enter the elements:\n");
-    for (int i = 0; i < numNonZero; i++) {
+    for (int i = 0; i < numNonZero; i++)
+    {
         scanf("%d %d %d", &inputMatrix[i].row, &inputMatrix[i].col, &inputMatrix[i].value);
     }
 
@@ -54,7 +61,8 @@ int main() {
 
     // Print the transposed matrix
     printf("Transposed Matrix:\n");
-    for (int i = 0; i < numNonZero; i++) {
+    for (int i = 0; i < numNonZero; i++)
+    {
         printf("(%d, %d, %d)\n", outputMatrix[i].row, outputMatrix[i].col, outputMatrix[i].value);
     }
 
