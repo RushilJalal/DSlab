@@ -11,7 +11,7 @@ int isEmpty()
 
 int isFull()
 {
-    return top == MAX - 1; 
+    return top == MAX - 1;
 }
 
 char peek()
@@ -86,13 +86,14 @@ int convert(char *expression)
             {
                 output[++j] = pop(); // pop all operators until '(' is encountered
             }                        // or the stack is left empty
+                                     // stops when '(' is encountered
             // and add the popped operators to the output array
 
-            if (isEmpty() || peek() != '(') // Fixed condition
+            if (isEmpty() || peek() != '(') // empty stack
                 return -1;
 
-            else //doubt
-                pop(); // pop the operator
+            else // pops the bracket
+                pop();
         }
 
         else
@@ -107,7 +108,7 @@ int convert(char *expression)
 
     output[++j] = '\0';
     printf("%s", output);
-    return 0; 
+    return 0;
 }
 
 int main()
