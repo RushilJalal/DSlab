@@ -68,19 +68,19 @@ int precedence(char ch)
     return -1;
 }
 
-int convert(char *expression)
+int convert(char *input)
 {
     char output[MAX]; // answer array
     int i, j;
-    for (i = 0, j = -1; expression[i] != '\0'; i++)
+    for (i = 0, j = -1; input[i] != '\0'; i++)
     {
-        if (checkIfOperand(expression[i])) // it is operand(a,b)
-            output[++j] = expression[i];   // so it is directly added to the output array
+        if (checkIfOperand(input[i])) // it is operand ex(a,b)
+            output[++j] = input[i];   // so it is directly added to the output array
 
-        else if (expression[i] == '(') // encountered open bracket
-            push(expression[i]);       // push ( to the operator stack
+        else if (input[i] == '(') // encountered open bracket
+            push(input[i]);       // push ( to the operator stack
 
-        else if (expression[i] == ')') // encountered close bracket
+        else if (input[i] == ')') // encountered close bracket
         {
             while (!isEmpty() && peek() != '(')
             {
@@ -98,9 +98,9 @@ int convert(char *expression)
 
         else
         {
-            while (!isEmpty() && precedence(expression[i]) <= precedence(peek()))
+            while (!isEmpty() && precedence(input[i]) <= precedence(peek()))
                 output[++j] = pop();
-            push(expression[i]); // Push the operator onto the stack
+            push(input[i]); // Push the operator onto the stack
         }
     }
     while (!isEmpty())
@@ -113,7 +113,9 @@ int convert(char *expression)
 
 int main()
 {
-    char expression[] = "((x+(y*z))-w)";
+    char expression[50];
+    printf("Enter expression: ");
+    gets(expression);
     convert(expression);
     return 0;
 }

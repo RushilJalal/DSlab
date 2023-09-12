@@ -2,7 +2,7 @@
 
 #define MAX_SIZE 100
 
-int stack[MAX_SIZE];
+int stack[MAX_SIZE]; // integer stack
 int top = -1;
 
 void push(int item)
@@ -36,25 +36,25 @@ int checkIfOperand(char ch)
     return (ch >= 'a' && ch <= 'z');
 }
 
-int evaluate(char *expression)
+int evaluate(char *input)
 {
     int i = 0;
-    char symbol = expression[i];
+    char symbol = input[i];
     int operand1, operand2, result, val;
     while (symbol != '\0')
     {
-        if (symbol >= '0' && symbol <= '9') // number, operand
+        if (symbol >= '0' && symbol <= '9') // number encountered
         {
             int num = symbol - '0'; // converting char to int
             push(num);
         }
-        else if (checkIfOperand(symbol))
+        else if (checkIfOperand(symbol)) // operand symbol encountered
         {
             printf("Enter value of % c", symbol);
             scanf("%d", &val);
-            push(val);
+            push(val); // pushed into int stack
         }
-        else if (isOperator(symbol))
+        else if (isOperator(symbol)) //
         {
             operand2 = pop();
             operand1 = pop();
@@ -76,7 +76,7 @@ int evaluate(char *expression)
             push(result);
         }
         i++;
-        symbol = expression[i];
+        symbol = input[i];
     }
     result = pop();
     return result;

@@ -4,13 +4,13 @@
 
 #define MAX 20
 
-char stack[MAX][MAX];
+char stack[MAX][MAX]; // String stack
 int top = -1;
 
 void push(char *item)
 {
     if (isFull())
-        printf("Overflow detected!\n");
+        printf("Stack Overflow \n");
     else
     {
         top++;
@@ -20,26 +20,17 @@ void push(char *item)
 
 int isFull()
 {
-    if (top == MAX - 1)
-        return 1;
-    else
-        return 0;
+    return (top == MAX - 1);
 }
 
 int isEmpty()
 {
-    if (top == -1)
-        return 1;
-    else
-        return 0;
+    return (top == -1);
 }
 
 int isOperator(char sym)
 {
-    if (sym == '+' || sym == '-' || sym == '*' || sym == '/' || sym == '^')
-        return 1;
-    else
-        return 0;
+    return (sym == '+' || sym == '-' || sym == '*' || sym == '/' || sym == '^');
 }
 
 char *pop()
@@ -51,15 +42,12 @@ char *pop()
 
 int isOperand(char sym)
 {
-    if (sym >= 'A' && sym <= 'Z' || sym >= 'a' && sym <= 'z')
-        return 1;
-    else
-        return 0;
+    return (sym >= 'a' && sym <= 'z');
 }
 
 int main()
 {
-    char postfix[MAX], temp[2], op[2] = {'(', '\0'}, cl[2] = {')', '\0'};
+    char postfix[MAX], temp[2], op[2] = {'(', '\0'}, cl[2] = {')', '\0'}; // open/close arrays
     int i = 0, j = 0;
     printf("Enter an postfix expression: ");
     gets(postfix);
