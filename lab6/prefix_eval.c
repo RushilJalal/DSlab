@@ -90,7 +90,7 @@ int evaluate(char *expression)
 
 int main()
 {
-    char expression[] = "3 4 + 2 *";
+    char expression[] = "34+2*";
     int result = evaluate(expression);
     printf("Result = %d\n", result);
     return 0;
