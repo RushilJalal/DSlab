@@ -46,15 +46,7 @@ int evaluate(char *expression)
 
         if (isdigit(symbol))
         {
-            int num = 0;
-            while (isdigit(symbol))
-            {
-                num = num * 10 + (symbol - '0');
-                i++;
-                symbol = expression[i];
-            }
-            i--; // Adjust index after parsing the number
-            push(num);
+            push(symbol - '0'); // Converts character to an integer and push it
         }
         else if (is_operator(symbol))
         {
@@ -82,7 +74,7 @@ int evaluate(char *expression)
                 result = operand1 / operand2;
                 break;
             }
-            push(result);
+            push(result); // Push the result back onto the stack
         }
     }
     return pop();
@@ -95,3 +87,4 @@ int main()
     printf("Result = %d\n", result);
     return 0;
 }
+//Result = 14

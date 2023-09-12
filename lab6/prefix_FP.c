@@ -85,3 +85,5 @@ int main()
     printf("The infix expression is: ");
     puts(stack[0]);
 }
+// Enter an prefix expression: +a*bc
+// The infix expression is: (a+(b*c))
