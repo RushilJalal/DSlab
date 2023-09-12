@@ -1,13 +1,13 @@
 #include <stdio.h>
 
 // Define a structure to represent each element of the sparse matrix
-struct Element
+typedef struct
 {
     int row, col, value;
-};
+} sparse;
 
 // Function to perform fast transpose of a sparse matrix
-void fastTranspose(struct Element original[], struct Element transposed[], int rows, int cols, int totalElements)
+void fastTranspose(sparse original[], sparse transposed[], int rows, int cols, int totalElements)
 {
     // Initialize an array to store the count of elements in each column of the original matrix
     int colCount[cols];
@@ -57,8 +57,8 @@ int main()
     scanf("%d", &totalElements);
 
     // Create arrays to store the original and transposed matrices
-    struct Element original[totalElements];
-    struct Element transposed[totalElements];
+    sparse original[totalElements];
+    sparse transposed[totalElements];
 
     // Input the elements of the original matrix
     printf("Enter the elements of the original matrix (row col value):\n");
