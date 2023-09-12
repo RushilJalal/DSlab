@@ -43,39 +43,40 @@ int stringCompare(const char str1[], const char str2[])
 }
 
 // Function to insert a substring into a string
-void stringInsert(char str[], int position, const char subStr[])
+void stringInsert(char str[], int pos, const char subStr[])
 {
     int lenStr = stringLength(str);
     int lenSubStr = stringLength(subStr);
-
-    for (int i = lenStr + lenSubStr; i >= position + lenSubStr; i--)
+    // makes room for substring
+    for (int i = lenStr + lenSubStr; i >= pos + lenSubStr; i--)
     {
         str[i] = str[i - lenSubStr];
     }
-
-    for (int i = position, j = 0; j < lenSubStr; i++, j++)
+    // inserts substring in the room created
+    for (int i = pos, j = 0; j < lenSubStr; i++, j++)
     {
         str[i] = subStr[j];
     }
+    str[lenStr + lenSubStr] = '\0';
 }
 
 // Function to delete a substring from a string
-void stringDelete(char str[], int position, int length)
+void stringDelete(char str[], int pos, int len)
 {
     int lenStr = stringLength(str);
 
-    for (int i = position; i < lenStr - length; i++)
+    for (int i = pos; i < lenStr - len; i++)
     {
-        str[i] = str[i + length];
+        str[i] = str[i + len];
     }
 
-    str[lenStr - length] = '\0';
+    str[lenStr - len] = '\0';
 }
 
 int main()
 {
     char str1[100], str2[100], result[200], subStr[100];
-    int position, length;
+    int pos, length;
 
     printf("Enter the first string: ");
     gets(str1);
@@ -97,17 +98,17 @@ int main()
         printf("String 1 is greater than string 2.\n");
 
     printf("Enter the position to insert substring: ");
-    scanf("%d", &position);
+    scanf("%d", &pos);
     printf("Enter the substring to insert: ");
     scanf("%s", subStr);
-    stringInsert(str1, position, subStr);
+    stringInsert(str1, pos, subStr);
     printf("String after insertion: %s\n", str1);
 
     printf("Enter the position to delete substring: ");
-    scanf("%d", &position);
+    scanf("%d", &pos);
     printf("Enter the length of substring to delete: ");
     scanf("%d", &length);
-    stringDelete(str1, position, length);
+    stringDelete(str1, pos, length);
     printf("String after deletion: %s\n", str1);
 
     return 0;

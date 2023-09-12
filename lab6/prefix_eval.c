@@ -1,60 +1,67 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+
 #define MAX_SIZE 100
+
 int stack[MAX_SIZE];
 int top = -1;
+
 void push(int item)
 {
     if (top >= MAX_SIZE - 1)
     {
         printf("Stack Overflow\n");
+        exit(1); // Exit the program on stack overflow
     }
     top++;
     stack[top] = item;
 }
+
 int pop()
 {
     if (top < 0)
     {
         printf("Stack Underflow\n");
-        return -1;
+        exit(1); // Exit the program on stack underflow
     }
     int item = stack[top];
     top--;
     return item;
 }
+
 int is_operator(char symbol)
 {
-    if (symbol == '+' || symbol == '-' || symbol == '*' || symbol == '/')
-        return 1;
-    return 0;
+    return (symbol == '+' || symbol == '-' || symbol == '*' || symbol == '/');
 }
-int checkIfOperand(char ch)
-{
-    return (ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z');
-}
+
 int evaluate(char *expression)
 {
-    int i = strlen(expression) - 1;
-    char symbol = expression[i];
-    int operand1, operand2, result, val;
-    while (i >= 0)
+    int len = strlen(expression);
+    for (int i = 0; i < len; i++)
     {
-        if (symbol >= '0' && symbol <= '9')
+        char symbol = expression[i];
+        if (symbol == ' ')
+            continue; // Skip whitespace
+
+        if (isdigit(symbol))
         {
-            int num = symbol - '0';
+            int num = 0;
+            while (isdigit(symbol))
+            {
+                num = num * 10 + (symbol - '0');
+                i++;
+                symbol = expression[i];
+            }
+            i--; // Adjust index after parsing the number
             push(num);
-        }
-        else if (checkIfOperand(symbol))
-        {
-            printf("Enter value of %c", symbol);
-            scanf("%d", &val);
-            push(val);
         }
         else if (is_operator(symbol))
         {
-            operand1 = pop();
-            operand2 = pop();
+            int operand2 = pop();
+            int operand1 = pop();
+            int result;
+
             switch (symbol)
             {
             case '+':
@@ -67,22 +74,24 @@ int evaluate(char *expression)
                 result = operand1 * operand2;
                 break;
             case '/':
+                if (operand2 == 0)
+                {
+                    printf("Division by zero\n");
+                    exit(1);
+                }
                 result = operand1 / operand2;
                 break;
-            } // switch
+            }
             push(result);
         }
-        i--;
-        symbol = expression[i];
     }
-    result = pop();
-    return result;
+    return pop();
 }
 
 int main()
 {
-    char expression[] = "abc + *d - ";
+    char expression[] = "3 4 + 2 *";
     int result = evaluate(expression);
-    printf("Result= %d\n", result);
+    printf("Result = %d\n", result);
     return 0;
 }
