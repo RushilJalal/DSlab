@@ -67,8 +67,7 @@ void prefixToPostfix(char *prefix)
         }
         else if (isOperator(ch))
         {
-            // If operator encountered, pop two times to get operands,
-            // concatenate them with the operator, and push the result to stack
+            // concatenate operands with operator, and push the result to stack
             char operand1 = pop(&stack);
             char operand2 = pop(&stack);
 

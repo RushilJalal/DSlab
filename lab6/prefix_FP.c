@@ -53,7 +53,7 @@ int main()
         if (isOperand(temp[0]))
             push(temp);
         else if (isOperator(temp[0]))
-        {
+        {   //to push in the form (operand1 operator operand2)
             strcpy(op1, pop());
             strcpy(op2, pop());
             strcat(exp, op);
