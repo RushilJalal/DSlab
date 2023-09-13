@@ -61,14 +61,14 @@ void prefixToPostfix(char *prefix)
     {
         char ch = prefix[i];
 
-        if (isalnum(ch)) // checks alphabet and number
+        if (isalnum(ch))
         {
             push(&stack, ch);
         }
         else if (isOperator(ch))
         {
-            // If operator encountered, pop two operands from the stack,
-            // concatenate them with the operator, and push the result back onto the stack
+            // If operator encountered, pop two times to get operands,
+            // concatenate them with the operator, and push the result to stack
             char operand1 = pop(&stack);
             char operand2 = pop(&stack);
 
@@ -79,13 +79,12 @@ void prefixToPostfix(char *prefix)
         }
         else
         {
-            // Invalid character
             printf("Invalid character: %c\n", ch);
             exit(1);
         }
     }
 
-    // The postfix expression should be at the top of the stack
+    // The postfix expression is at the top of the stack
     char postfix[MAX];
     int j = 0;
     while (!isEmpty(&stack))

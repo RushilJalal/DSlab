@@ -43,7 +43,7 @@ void push(char oper)
 
 int checkIfOperand(char ch)
 {
-    return (ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z');
+    return (ch >= 'a' && ch <= 'z');
 }
 
 int precedence(char ch)
@@ -67,7 +67,7 @@ void convertInfixToPrefix(char *expression)
 {
     int i, j;
     char output[20];
-    for (i = 0; expression[i] != '\0'; i++)
+    for (i = 0; expression[i] != '\0'; i++) // traversing backwards
         ;
     i = i - 1;
     for (j = -1; i >= 0; i--)
@@ -100,9 +100,8 @@ void convertInfixToPrefix(char *expression)
         output[++j] = pop();
     }
     output[++j] = '\0';
-    // Reverse the output string
     strrev(output);
-    printf("%s\n", output);
+    puts(output);
 }
 
 int main()

@@ -38,7 +38,7 @@ int is_operator(char symbol)
 int evaluate(char *expression)
 {
     int len = strlen(expression);
-    for (int i = len - 1; i >= 0; i--) // Start from the end of the expression instead of reversing
+    for (int i = len - 1; i >= 0; i--) // Start from the end of the expression 
     {
         char symbol = expression[i];
         if (symbol == ' ')
