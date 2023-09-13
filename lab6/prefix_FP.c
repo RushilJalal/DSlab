@@ -25,7 +25,7 @@ int isEmpty()
 
 int isOperator(char sym)
 {
-    return (sym == '+' || sym == '-' || sym == '*' || sym == '/' || sym == '^'); 
+    return (sym == '+' || sym == '-' || sym == '*' || sym == '/' || sym == '^');
 }
 char *pop()
 {
@@ -35,7 +35,7 @@ char *pop()
 }
 int isOperand(char sym)
 {
-   return (sym >= 'A' && sym <= 'Z' || sym >= 'a' && sym <= 'z')
+    return (sym >= 'A' && sym <= 'Z' || sym >= 'a' && sym <= 'z');
 }
 
 int main()
