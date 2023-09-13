@@ -24,7 +24,10 @@ char peek()
 char pop()
 {
     if (isEmpty())
-        return -1;
+    {
+        printf("Stack empty!");
+        return;
+    }
     char ch = stk[top];
     top--;
     return (ch);
