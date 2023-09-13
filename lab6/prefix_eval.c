@@ -66,15 +66,10 @@ int evaluate(char *expression)
                 result = operand1 * operand2;
                 break;
             case '/':
-                if (operand2 == 0)
-                {
-                    printf("Division by zero\n");
-                    exit(1);
-                }
                 result = operand1 / operand2;
                 break;
             }
-            push(result); 
+            push(result);
         }
     }
     return pop();
@@ -82,8 +77,12 @@ int evaluate(char *expression)
 
 int main()
 {
-    char expression[] = "+ 3 * 4 2"; 
+    char expression[50];
+    printf("Enter prefix expression: ");
+    gets(expression);
     int result = evaluate(expression);
     printf("Result = %d\n", result);
     return 0;
 }
+//input:+3*42
+//output: result = 11 

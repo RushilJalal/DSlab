@@ -7,7 +7,7 @@ int top = -1;
 void push(char *item)
 {
     if (isFull())
-        printf("Overflow detected!\n");
+        printf("Stack Overflow\n");
     else
     {
         top++;
@@ -16,30 +16,21 @@ void push(char *item)
 }
 int isFull()
 {
-    if (top == MAX - 1)
-        return 1;
-    else
-        return 0;
+    return (top == MAX - 1);
 }
 int isEmpty()
 {
-    if (top == -1)
-        return 1;
-    else
-        return 0;
+    return (top == -1);
 }
 
 int isOperator(char sym)
 {
-    if (sym == '+' || sym == '-' || sym == '*' || sym == '/' || sym == '^')
-        return 1;
-    else
-        return 0;
+    return (sym == '+' || sym == '-' || sym == '*' || sym == '/' || sym == '^'); 
 }
 char *pop()
 {
     if (isEmpty())
-        exit(0);
+        return;
     return stack[top--];
 }
 int isOperand(char sym)
@@ -78,7 +69,7 @@ int main()
         else
         {
             printf("Invalid Arithmetic expression!\n");
-            exit(0);
+            return;
         }
         i--;
     }
