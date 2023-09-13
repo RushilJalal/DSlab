@@ -35,10 +35,7 @@ char *pop()
 }
 int isOperand(char sym)
 {
-    if (sym >= 'A' && sym <= 'Z' || sym >= 'a' && sym <= 'z')
-        return 1;
-    else
-        return 0;
+   return (sym >= 'A' && sym <= 'Z' || sym >= 'a' && sym <= 'z')
 }
 
 int main()
