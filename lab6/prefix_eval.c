@@ -12,7 +12,7 @@ void push(int item)
     if (top >= MAX_SIZE - 1)
     {
         printf("Stack Overflow\n");
-        exit(1); // Exit the program on stack overflow
+        exit(1);
     }
     top++;
     stack[top] = item;
@@ -23,7 +23,7 @@ int pop()
     if (top < 0)
     {
         printf("Stack Underflow\n");
-        exit(1); // Exit the program on stack underflow
+        exit(1);
     }
     int item = stack[top];
     top--;
@@ -38,11 +38,11 @@ int is_operator(char symbol)
 int evaluate(char *expression)
 {
     int len = strlen(expression);
-    for (int i = 0; i < len; i++)
+    for (int i = len - 1; i >= 0; i--) // Start from the end of the expression instead of reversing
     {
         char symbol = expression[i];
         if (symbol == ' ')
-            continue; // Skip whitespace
+            continue;
 
         if (isdigit(symbol))
         {
@@ -50,8 +50,8 @@ int evaluate(char *expression)
         }
         else if (is_operator(symbol))
         {
-            int operand2 = pop();
             int operand1 = pop();
+            int operand2 = pop();
             int result;
 
             switch (symbol)
@@ -74,7 +74,7 @@ int evaluate(char *expression)
                 result = operand1 / operand2;
                 break;
             }
-            push(result); // Push the result back onto the stack
+            push(result); 
         }
     }
     return pop();
@@ -82,9 +82,8 @@ int evaluate(char *expression)
 
 int main()
 {
-    char expression[] = "34+2*";
+    char expression[] = "+ 3 * 4 2"; 
     int result = evaluate(expression);
     printf("Result = %d\n", result);
     return 0;
 }
-//Result = 14

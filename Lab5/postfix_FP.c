@@ -49,7 +49,7 @@ int main()
 {
     char postfix[MAX], temp[2], op[2] = {'(', '\0'}, cl[2] = {')', '\0'}; // open/close arrays
     int i = 0, j = 0;
-    printf("Enter an postfix expression: ");
+    printf("Enter a postfix expression: ");
     gets(postfix);
     while (postfix[i] != '\0')
     {
@@ -76,6 +76,6 @@ int main()
         }
         i++;
     }
-    printf("The infix expression is: ");
+    printf("The FP infix expression is: ");
     puts(stack[0]);
 }
