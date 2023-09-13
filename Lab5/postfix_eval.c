@@ -43,16 +43,16 @@ int evaluate(char *input)
     int operand1, operand2, result, val;
     while (symbol != '\0')
     {
-        if (symbol >= '0' && symbol <= '9') // number encountered
+        if (symbol >= '0' && symbol <= '9')
         {
             int num = symbol - '0'; // converting char to int
             push(num);
         }
-        else if (checkIfOperand(symbol)) // operand symbol encountered
+        else if (checkIfOperand(symbol))
         {
             printf("Enter value of % c", symbol);
             scanf("%d", &val);
-            push(val); // pushed into int stack
+            push(val); // pushed to int stack
         }
         else if (isOperator(symbol)) //
         {

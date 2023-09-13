@@ -74,20 +74,18 @@ int convert(char *input)
     int i, j;
     for (i = 0, j = -1; input[i] != '\0'; i++)
     {
-        if (checkIfOperand(input[i])) // it is operand ex(a,b)
-            output[++j] = input[i];   // so it is directly added to the output array
+        if (checkIfOperand(input[i]))
+            output[++j] = input[i]; // so it is directly added to the output array
 
-        else if (input[i] == '(') // encountered open bracket
-            push(input[i]);       // push ( to the operator stack
+        else if (input[i] == '(')
+            push(input[i]); // push ( to the operator stack
 
-        else if (input[i] == ')') // encountered close bracket
+        else if (input[i] == ')')
         {
             while (!isEmpty() && peek() != '(')
             {
-                output[++j] = pop(); // pop all operators until '(' is encountered
-            }                        // or the stack is left empty
-                                     // stops when '(' is encountered
-            // and add the popped operators to the output array
+                output[++j] = pop(); // pop all operators until '(' is encountered or the stack is left empty
+            }                       // stops when '(' is encountered and add the popped operators to the output array
 
             if (isEmpty() || peek() != '(') // empty stack
                 return -1;
@@ -97,7 +95,7 @@ int convert(char *input)
         }
 
         else
-        {
+        { // check for precedence
             while (!isEmpty() && precedence(input[i]) <= precedence(peek()))
                 output[++j] = pop();
             push(input[i]); // Push the operator onto the stack
@@ -119,3 +117,5 @@ int main()
     convert(expression);
     return 0;
 }
+// Enter expression: a+b-c
+// ab+c-

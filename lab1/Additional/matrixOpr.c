@@ -1,6 +1,5 @@
 #include <stdio.h>
 
-// Function to read a matrix
 void readMatrix(int matrix[][10], int rows, int cols)
 {
     printf("Enter the matrix elements:\n");
@@ -13,7 +12,6 @@ void readMatrix(int matrix[][10], int rows, int cols)
     }
 }
 
-// Function to print a matrix
 void printMatrix(int matrix[][10], int rows, int cols)
 {
     for (int i = 0; i < rows; i++)
@@ -26,7 +24,6 @@ void printMatrix(int matrix[][10], int rows, int cols)
     }
 }
 
-// Function to multiply two matrices
 void multiplyMatrices(int A[][10], int B[][10], int C[][10], int rowsA, int colsA, int colsB)
 {
     for (int i = 0; i < rowsA; i++)
@@ -58,8 +55,6 @@ void addMatrices(int A[][10], int B[][10], int C[][10], int rows, int cols)
 int isMagicSquare(int matrix[][10], int size)
 {
     int sum = 0;
-
-    // Calculate the sum of the first row
     for (int i = 0; i < size; i++)
     {
         sum += matrix[0][i];
@@ -80,7 +75,7 @@ int isMagicSquare(int matrix[][10], int size)
         }
     }
 
-    // Check the two diagonals
+    // Check the diagonals
     int diag1Sum = 0, diag2Sum = 0;
     for (int i = 0; i < size; i++)
     {
@@ -93,7 +88,7 @@ int isMagicSquare(int matrix[][10], int size)
         return 0; // Not a magic square
     }
 
-    return 1; // It's a magic square
+    return 1; 
 }
 
 int main()
@@ -101,12 +96,10 @@ int main()
     int A[10][10], B[10][10], C[10][10];
     int rowsA, colsA, rowsB, colsB;
 
-    // Read matrix A
     printf("Enter the number of rows and columns of matrix A: ");
     scanf("%d %d", &rowsA, &colsA);
     readMatrix(A, rowsA, colsA);
 
-    // Read matrix B
     printf("Enter the number of rows and columns of matrix B: ");
     scanf("%d %d", &rowsB, &colsB);
     readMatrix(B, rowsB, colsB);

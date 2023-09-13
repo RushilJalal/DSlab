@@ -2,24 +2,31 @@
 
 #define MAX_EXPRESSION_LENGTH 100
 
-// Function to check if parentheses are matching
-int areParenthesesMatching(const char* expression) {
+int areParenthesesMatching(const char *expression)
+{
     char stack[MAX_EXPRESSION_LENGTH];
     int top = -1;
 
-    for (int i = 0; expression[i] != '\0' && expression[i] != '\n'; i++) {
-        if (expression[i] == '(' || expression[i] == '{' || expression[i] == '[') {
-            if (top == MAX_EXPRESSION_LENGTH - 1) {
-                return 0; // Stack is full
+    for (int i = 0; expression[i] != '\0' && expression[i] != '\n'; i++)
+    {
+        if (expression[i] == '(' || expression[i] == '{' || expression[i] == '[')
+        {
+            if (top == MAX_EXPRESSION_LENGTH - 1)
+            {
+                return 0;
             }
             stack[++top] = expression[i];
-        } else if (expression[i] == ')' || expression[i] == '}' || expression[i] == ']') {
-            if (top == -1) {
+        }
+        else if (expression[i] == ')' || expression[i] == '}' || expression[i] == ']')
+        {
+            if (top == -1)
+            {
                 return 0; // Unmatched closing parenthesis
             }
             if ((expression[i] == ')' && stack[top] != '(') ||
                 (expression[i] == '}' && stack[top] != '{') ||
-                (expression[i] == ']' && stack[top] != '[')) {
+                (expression[i] == ']' && stack[top] != '['))
+            {
                 return 0; // Mismatched parentheses
             }
             top--;
@@ -29,24 +36,30 @@ int areParenthesesMatching(const char* expression) {
     return (top == -1) ? 1 : 0; // Check if stack is empty
 }
 
-int main() {
+int main()
+{
     char expression[MAX_EXPRESSION_LENGTH];
     printf("Enter an expression (up to %d characters): ", MAX_EXPRESSION_LENGTH - 1);
 
     int c;
     int i = 0;
-    while (i < MAX_EXPRESSION_LENGTH - 1) {
+    while (i < MAX_EXPRESSION_LENGTH - 1)
+    {
         c = getchar();
-        if (c == '\n') {
+        if (c == '\n')
+        {
             expression[i] = '\0';
             break;
         }
         expression[i++] = (char)c;
     }
 
-    if (areParenthesesMatching(expression)) {
+    if (areParenthesesMatching(expression))
+    {
         printf("Parentheses are matching.\n");
-    } else {
+    }
+    else
+    {
         printf("Parentheses are not matching.\n");
     }
 

@@ -1,14 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// Structure for stack
 struct Stack
 {
     int data;
     struct Stack *next;
 };
 
-// Function to create a new stack node
+// new stack node created
 struct Stack *createNode(int data)
 {
     struct Stack *newNode = (struct Stack *)malloc(sizeof(struct Stack));
@@ -22,7 +21,6 @@ struct Stack *createNode(int data)
     return newNode;
 }
 
-// Function to check if a stack is empty
 int isEmpty(struct Stack *stack)
 {
     return (stack == NULL);

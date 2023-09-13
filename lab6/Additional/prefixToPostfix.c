@@ -91,10 +91,7 @@ void prefixToPostfix(char *prefix)
         postfix[j++] = pop(&stack);
     }
     postfix[j] = '\0';
-
-    // Reverse the postfix expression to get the correct order
     strrev(postfix);
-
     puts(postfix);
 }
 

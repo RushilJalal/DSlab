@@ -59,7 +59,7 @@ int main()
         if (isOperand(temp[0]))
             push(temp);
         else if (isOperator(temp[0]))
-        {
+        { // to push in the form (operand1 operator operand2)
             strcpy(op2, pop());
             strcpy(op1, pop());
             strcat(exp, op);
@@ -79,3 +79,5 @@ int main()
     printf("The FP infix expression is: ");
     puts(stack[0]);
 }
+// Enter a postfix expression: ab+c-
+// The FP infix expression is: ((a+b)-c)
