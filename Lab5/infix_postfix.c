@@ -70,7 +70,7 @@ int precedence(char ch)
 
 int convert(char *input)
 {
-    char output[MAX]; // answer array
+    char output[MAX]; 
     int i, j;
     for (i = 0, j = -1; input[i] != '\0'; i++)
     {
