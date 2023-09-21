@@ -23,7 +23,7 @@ void createList()
             newNode = malloc(sizeof(Node));
             start = newNode;
             current = start;
-            printf("Enter start data");
+            printf("Enter start data: ");
             scanf("%d", &data);
             start->data = data;
             for (int i = 2; i <= n; i++)
@@ -36,11 +36,11 @@ void createList()
                 current = current->link;
             }
             current->link = NULL;
-            printf("List is created");
+            printf("List is created\n");
         }
     }
     else
-        printf("List already created");
+        printf("List already created\n");
 }
 
 void traverse()
@@ -50,6 +50,7 @@ void traverse()
         printf("Empty list");
     else
     {
+        printf("Displaying list: /n");
         current = start;
         while (current != NULL)
         {
@@ -59,25 +60,76 @@ void traverse()
     }
 }
 
-void insertBefore() // inserts element before specified position
+void insertBefore() // inserts element before specified element
 {
-    int data, pos;
+    int data, val, found = 0;
+    Node *temp;
     Node *current;
-    Node *previous;
-    Node *nextnode;
+    Node *nextNode;
+    temp = malloc(sizeof(Node));
     current = malloc(sizeof(Node));
-    printf("Enter position to insert before: ");
-    scanf("%d", &pos);
-    printf("Enter data to enter before element: ");
-    scanf("%d", &data);
+    printf("Enter data to insert before of in linked list: ");
+    scanf("%d", &val);
 
-    current->data = data;
-    if(pos == 1) //
+    current = start;
+    nextNode = current->link;
+    while (current != NULL)
+    {
+        if (nextNode->data == val)
+        {
+            current->link = temp;
+            temp->link = nextNode;
+            printf("Enter data to be inserted: ");
+            scanf("%d", &data);
+            temp->data = data;
+            printf("Insert node before another node containing data %d completed\n", val);
+            found = 1;
+            return;
+        }
+        current = current->link;
+        nextNode = current->link;
+    }
+    if (found == 0)
+        printf("Data not found\n");
+}
 
+void insertAfter()
+{
+    int data, val, found = 0;
+    Node *temp;
+    Node *current;
+    Node *nextNode;
+    temp = malloc(sizeof(Node));
+    current = malloc(sizeof(Node));
+    printf("Enter data to insert after of in linked list: ");
+    scanf("%d", &val);
+
+    current = start;
+    nextNode = current->link;
+    while (current != NULL)
+    {
+        if (current->data == val)
+        {
+            current->link = temp;
+            temp->link = nextNode;
+            printf("Enter data to be inserted: ");
+            scanf("%d", &data);
+            temp->data = data;
+            printf("Insert node after another node containing data %d completed\n", val);
+            found = 1;
+            return;
+        }
+        current = current->link;
+        nextNode = current->link;
+    }
+    if (found == 0)
+        printf("Data not found\n");
 }
 
 int main()
 {
     createList();
+    insertBefore();
+    insertAfter();
     traverse();
 }
