@@ -4,7 +4,7 @@
 typedef struct Node
 {
     int data;
-    Node *link;
+    struct Node *link;
 } Node;
 
 Node *start = NULL;
@@ -153,9 +153,33 @@ void delete()
         printf("Element not found");
 }
 
+void reverseList()
+{
+    Node *current;
+    Node *nextNode;
+    Node *previous;
+    current = malloc(sizeof(Node));
+    nextNode = malloc(sizeof(Node));
+    previous = malloc(sizeof(Node));
+    current = start;
+    previous = NULL;
+    printf("Reversing list...\n");
+
+    while (current != NULL)
+    {
+        nextNode = current->link;
+        current->link = previous;
+        previous = current;
+        current = nextNode;
+    }
+
+    start = previous;
+}
+
 int main()
 {
     createList();
-    delete ();
+    traverse();
+    reverseList();
     traverse();
 }
