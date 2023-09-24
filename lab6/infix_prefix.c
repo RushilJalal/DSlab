@@ -91,7 +91,7 @@ void convertInfixToPrefix(char *expression)
             else
                 pop();
         }
-        else
+        else// operator
         {
             while (!isEmpty() && precedence(expression[i]) < precedence(peek()))
                 output[++j] = pop();
