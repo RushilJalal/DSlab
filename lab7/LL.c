@@ -176,10 +176,41 @@ void reverseList()
     start = previous;
 }
 
+void sort()
+{
+    Node *current = start;
+    Node *nextNode;
+    int temp;
+    int swapped; // notes whether has been swapping in the iteration
+
+    if (start == NULL)
+    {
+        return;
+    }
+
+    do
+    {
+        swapped = 0;
+        current = start;
+        while (current->link != NULL)
+        {
+            nextNode = current->link;
+            if (current->data > nextNode->data)
+            {
+                temp = current->data;
+                current->data = nextNode->data;
+                nextNode->data = temp;
+                swapped = 1;
+            }
+            current = current->link;
+        }
+    } while (swapped);
+}
+
 int main()
 {
     createList();
     traverse();
-    reverseList();
+    sort();
     traverse();
 }
