@@ -15,9 +15,18 @@ int init(struct CQ *q)
     q->rear = 0;
 }
 
+int isFull(struct CQ *q)
+{
+    return (q->front + 1) % MAX_SIZE == q->rear;
+}
+
+int isEmpty(struct CQ *q)
+{
+    return q->front == q->rear;
+}
 int ins(struct CQ *q, int ele)
 {
-    if ((q->front + 1) % MAX_SIZE == q->rear)
+    if (isFull(q))
     {
         printf("Queue is full \n");
         return -1;
@@ -29,7 +38,7 @@ int ins(struct CQ *q, int ele)
 
 int del(struct CQ *q)
 {
-    if (q->front == q->rear)
+    if (isEmpty(q))
     {
         printf("Queue is empty \n");
         return -1;
@@ -38,9 +47,9 @@ int del(struct CQ *q)
     return q->q[q->rear % MAX_SIZE];
 }
 
-int display(struct CQ q)
+int display(struct CQ *q)
 {
-    if (q.rear == q.front)
+    if (isEmpty(q))
     {
         printf("Queue is empty \n");
         return -1;
@@ -48,17 +57,17 @@ int display(struct CQ q)
     printf("The current queue is [");
     int i;
 
-    for (i = q.rear + 1; i != q.front; i++)
+    for (i = q->rear + 1; i != q->front; i++)
     {
-        printf("%d, ", q.q[i % MAX_SIZE]);
+        printf("%d, ", q->q[i % MAX_SIZE]);
     }
-    printf("%d] \n", q.q[i % MAX_SIZE]);
+    printf("%d] \n", q->q[i % MAX_SIZE]);
     return 0;
 }
 
 int main()
 {
-    struct CQ q;
+    struct CQ *q;
     init(&q);
     int choice;
     while (1)
