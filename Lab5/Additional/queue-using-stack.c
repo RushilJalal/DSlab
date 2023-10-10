@@ -1,103 +1,96 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct Stack
-{
-    int data;
-    struct Stack *next;
-};
+typedef struct {
+    int* data;
+    int top;
+    int maxSize;
+} Stack;
 
-// new stack node created
-struct Stack *createNode(int data)
-{
-    struct Stack *newNode = (struct Stack *)malloc(sizeof(struct Stack));
-    if (!newNode)
-    {
-        printf("Memory allocation error\n");
-        exit(1);
+Stack* createStack(int maxSize) {
+    Stack* stack = (Stack*)malloc(sizeof(Stack));
+    stack->data = (int*)malloc(maxSize * sizeof(int));
+    stack->top = -1;
+    stack->maxSize = maxSize;
+    return stack;
+}
+
+int isEmpty(Stack* stack) {
+    return stack->top == -1;
+}
+
+int isFull(Stack* stack) {
+    return stack->top == stack->maxSize - 1;
+}
+
+void push(Stack* stack, int value) {
+    if (isFull(stack)) {
+        printf("Stack is full. Cannot push.\n");
+        return;
     }
-    newNode->data = data;
-    newNode->next = NULL;
-    return newNode;
+    stack->data[++stack->top] = value;
 }
 
-int isEmpty(struct Stack *stack)
-{
-    return (stack == NULL);
-}
-
-// Function to push an element onto the stack
-void push(struct Stack **stack, int data)
-{
-    struct Stack *newNode = createNode(data);
-    newNode->next = *stack;
-    *stack = newNode;
-}
-
-// Function to pop an element from the stack
-int pop(struct Stack **stack)
-{
-    if (isEmpty(*stack))
-    {
-        printf("Stack is empty\n");
-        exit(1);
+int pop(Stack* stack) {
+    if (isEmpty(stack)) {
+        printf("Stack is empty. Cannot pop.\n");
+        return -1;
     }
-    struct Stack *temp = *stack;
-    *stack = (*stack)->next;
-    int popped = temp->data;
-    free(temp);
-    return popped;
+    return stack->data[stack->top--];
 }
 
-// Structure for queue using two stacks
-struct Queue
-{
-    struct Stack *stack1;
-    struct Stack *stack2;
-};
+typedef struct {
+    Stack* inbox;
+    Stack* outbox;
+} Queue;
 
-// Function to enqueue an element into the queue
-void enqueue(struct Queue *queue, int data)
-{
-    push(&queue->stack1, data);
+Queue* createQueue(int maxSize) {
+    Queue* queue = (Queue*)malloc(sizeof(Queue));
+    queue->inbox = createStack(maxSize);
+    queue->outbox = createStack(maxSize);
+    return queue;
 }
 
-// Function to dequeue an element from the queue
-int dequeue(struct Queue *queue)
-{
-    if (isEmpty(queue->stack1) && isEmpty(queue->stack2))
-    {
-        printf("Queue is empty\n");
-        exit(1);
+void enqueue(Queue* queue, int value) {
+    if (isFull(queue->inbox)) {
+        printf("Queue is full. Cannot enqueue.\n");
+        return;
+    }
+    push(queue->inbox, value);
+}
+
+int dequeue(Queue* queue) {
+    if (isEmpty(queue->inbox) && isEmpty(queue->outbox)) {
+        printf("Queue is empty. Cannot dequeue.\n");
+        return -1;
     }
 
-    if (isEmpty(queue->stack2))
-    {
-        while (!isEmpty(queue->stack1))
-        {
-            int data = pop(&queue->stack1);
-            push(&queue->stack2, data);
+    if (isEmpty(queue->outbox)) {
+        while (!isEmpty(queue->inbox)) {
+            int value = pop(queue->inbox);
+            push(queue->outbox, value);
         }
     }
 
-    return pop(&queue->stack2);
+    return pop(queue->outbox);
 }
 
-int main()
-{
-    struct Queue *queue = (struct Queue *)malloc(sizeof(struct Queue));
-    queue->stack1 = NULL;
-    queue->stack2 = NULL;
+int main() {
+    Queue* queue = createQueue(5);
 
     enqueue(queue, 1);
     enqueue(queue, 2);
     enqueue(queue, 3);
 
-    printf("Dequeue: %d\n", dequeue(queue));
-    printf("Dequeue: %d\n", dequeue(queue));
-    printf("Dequeue: %d\n", dequeue(queue));
+    printf("Dequeued: %d\n", dequeue(queue));
+    printf("Dequeued: %d\n", dequeue(queue));
 
-    free(queue);
+    enqueue(queue, 4);
+    enqueue(queue, 5);
+
+    printf("Dequeued: %d\n", dequeue(queue));
+    printf("Dequeued: %d\n", dequeue(queue));
+    printf("Dequeued: %d\n", dequeue(queue));
 
     return 0;
 }
