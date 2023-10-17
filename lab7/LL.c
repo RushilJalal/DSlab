@@ -207,10 +207,31 @@ void sort()
     } while (swapped);
 }
 
+void deleteAlt(){
+    int m=0;
+    Node *cur = start->link;
+    Node *ptr = start;
+    while(cur != NULL){
+        if(m==0){
+            ptr->link = cur->link;
+            Node *temp = cur;
+            cur = cur->link;
+            free(temp);
+            m = -1;
+        }
+        else {
+            m = 0;
+            ptr = cur;
+            cur = cur->link;
+        }
+    }
+}
+
 int main()
 {
     createList();
     traverse();
     sort();
+    deleteAlt();
     traverse();
 }
