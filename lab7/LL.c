@@ -207,22 +207,26 @@ void sort()
     } while (swapped);
 }
 
-void deleteAlt(){
-    int m=0;
-    Node *cur = start->link;
+void deleteAlt()
+{
+    int m = 0;
+    Node *current = start->link;
     Node *ptr = start;
-    while(cur != NULL){
-        if(m==0){
-            ptr->link = cur->link;
-            Node *temp = cur;
-            cur = cur->link;
+    while (current != NULL)
+    {
+        if (m == 0)
+        {
+            ptr->link = current->link;
+            Node *temp = current;
+            current = current->link;
             free(temp);
             m = -1;
         }
-        else {
+        else
+        {
             m = 0;
-            ptr = cur;
-            cur = cur->link;
+            ptr = current;
+            current = current->link;
         }
     }
 }
