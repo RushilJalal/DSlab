@@ -70,12 +70,12 @@ int precedence(char ch)
 
 int convert(char *input)
 {
-    char output[MAX]; 
+    char output[MAX];
     int i, j;
     for (i = 0, j = -1; input[i] != '\0'; i++)
     {
         if (checkIfOperand(input[i]))
-            output[++j] = input[i]; // so it is directly added to the output array
+            output[++j] = input[i]; // numbers are directly added to the output array
 
         else if (input[i] == '(')
             push(input[i]); // push ( to the operator stack
@@ -85,7 +85,7 @@ int convert(char *input)
             while (!isEmpty() && peek() != '(')
             {
                 output[++j] = pop(); // pop all operators until '(' is encountered or the stack is left empty
-            }                       // stops when '(' is encountered and add the popped operators to the output array
+            }                        // stops when '(' is encountered and add the popped operators to the output array
 
             if (isEmpty() || peek() != '(') // empty stack
                 return -1;

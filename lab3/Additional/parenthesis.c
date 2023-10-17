@@ -1,17 +1,17 @@
 #include <stdio.h>
 
-#define MAX_EXPRESSION_LENGTH 100
+#define MAX 100
 
 int areParenthesesMatching(const char *expression)
 {
-    char stack[MAX_EXPRESSION_LENGTH];
+    char stack[MAX];
     int top = -1;
 
     for (int i = 0; expression[i] != '\0' && expression[i] != '\n'; i++)
     {
         if (expression[i] == '(' || expression[i] == '{' || expression[i] == '[')
         {
-            if (top == MAX_EXPRESSION_LENGTH - 1)
+            if (top == MAX - 1)
             {
                 return 0;
             }
@@ -38,12 +38,12 @@ int areParenthesesMatching(const char *expression)
 
 int main()
 {
-    char expression[MAX_EXPRESSION_LENGTH];
-    printf("Enter an expression (up to %d characters): ", MAX_EXPRESSION_LENGTH - 1);
+    char expression[MAX];
+    printf("Enter an expression (up to %d characters): ", MAX - 1);
 
     int c;
     int i = 0;
-    while (i < MAX_EXPRESSION_LENGTH - 1)
+    while (i < MAX - 1)
     {
         c = getchar();
         if (c == '\n')
