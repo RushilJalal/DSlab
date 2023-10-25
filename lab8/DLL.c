@@ -63,8 +63,62 @@ node *deleteAtPos(node *head, int pos)
     {
         current = current->next;
     }
+}
+
+node *insertAfter(node *head, int ele)
+{
+    node *current = head;
+    node *temp = malloc(sizeof(node));
+    temp->prev = NULL;
+    temp->data = ele;
+    while (current->data != ele)
+    {
+        current = current->next;
+    }
+    temp->next = current->next;
+    current->next = temp;
+    temp->prev = current;
+    temp->next->prev = temp;
+    return;
+}
+
+node *insertBefore(node *head, int ele)
+{
+    node *current = head;
+    node *temp = malloc(sizeof(node));
+    temp->data = ele;
+    while (current->data != ele)
+    {
+        current = current->next;
+    }
+    current->prev->next = temp;
+    temp->prev = current->prev;
+    temp->next = current;
+    current->prev = temp; // check logic plsssssss
+    return;
+}
+
+void traverse(node *head)
+{
+    node *current = head;
+    if (current == NULL)
+    {
+        printf("DLL is empty...");
+        return;
+    }
+    while (current != NULL)
+    {
+        printf("%d", current->data);
+        current = current->next;
+    }
+}
+
+void reverse(node *head)
+{
     
 }
+
+// Complete thissssss
 
 int main()
 {
@@ -95,7 +149,7 @@ int main()
             deleteAtEnd(head);
             break;
 
-        case 3: 
+        case 3:
             printf("Enter data: ");
             scanf("%d", &data);
             printf("Enter position: ");
