@@ -176,35 +176,21 @@ void reverseList()
     start = previous;
 }
 
-void sort()
+void sort(Node *head)
 {
-    Node *current = start;
-    Node *nextNode;
-    int temp;
-    int swapped; // notes whether has been swapping in the iteration
-
-    if (start == NULL)
+    Node *temp;
+    for (Node *i = head; i->link != NULL; i = i->link)
     {
-        return;
-    }
-
-    do
-    {
-        swapped = 0;
-        current = start;
-        while (current->link != NULL)
+        for (Node *j = head; j->link != NULL; j = j->link)
         {
-            nextNode = current->link;
-            if (current->data > nextNode->data)
+            if (j->data < j->link->data)
             {
-                temp = current->data;
-                current->data = nextNode->data;
-                nextNode->data = temp;
-                swapped = 1;
+                temp->data = j->data;
+                j->data = j->link->data;
+                j->link->data = temp->data;
             }
-            current = current->link;
         }
-    } while (swapped);
+    }
 }
 
 void deleteAlt()
@@ -233,9 +219,11 @@ void deleteAlt()
 
 int main()
 {
+    Node *head;
     createList();
     traverse();
-    sort();
+    sort(head);
     deleteAlt();
     traverse();
 }
+// plsss check outputttttttttt
