@@ -100,7 +100,6 @@ void insertAfter()
     Node *current;
     Node *nextNode;
     temp = malloc(sizeof(Node));
-    current = malloc(sizeof(Node));
     printf("Enter data to insert after of in linked list: ");
     scanf("%d", &val);
 
@@ -176,14 +175,14 @@ void reverseList()
     start = previous;
 }
 
-void sort(Node *head)
+void sort() // working
 {
-    Node *temp;
-    for (Node *i = head; i->link != NULL; i = i->link)
+    Node *temp = malloc(sizeof(Node));
+    for (Node *i = start; i->link != NULL; i = i->link)
     {
-        for (Node *j = head; j->link != NULL; j = j->link)
+        for (Node *j = start; j->link != NULL; j = j->link)
         {
-            if (j->data < j->link->data)
+            if (j->data > j->link->data)
             {
                 temp->data = j->data;
                 j->data = j->link->data;
@@ -217,13 +216,83 @@ void deleteAlt()
     }
 }
 
+void insertEleOrder()
+{
+    Node *temp = malloc(sizeof(Node));
+    Node *current = start;
+    printf("Enter element to be inserted: ");
+    scanf("%d", &temp->data);
+    while (current != NULL)
+    {
+        if (current->link->data > temp->data)
+        {
+            temp->link = current->link;
+            current->link = temp;
+        }
+        current = current->link;
+    }
+}
+
 int main()
 {
     Node *head;
+    int choice = 0;
+    printf("Creating list...");
     createList();
-    traverse();
-    sort(head);
-    deleteAlt();
-    traverse();
+    while (choice != -1)
+    {
+        printf("Choose an option");
+        printf("1. Insert an element before another element");
+        printf("2. Insert an element after another element");
+        printf("3. Delete an element");
+        printf("4. Traverse the list");
+        printf("5. Reverse the list");
+        printf("6. Sort the list");
+        printf("7. Delete every alternate node");
+        printf("8. Insert element in sorted list such that order is maintained");
+        scanf("%d", &choice);
+        switch (choice)
+        {
+        case 1:
+            insertBefore();
+            break;
+
+        case 2:
+            insertAfter();
+            break;
+
+        case 3:
+            delete ();
+            break;
+
+        case 4:
+            traverse();
+            break;
+
+        case 5:
+            reverseList();
+            break;
+
+        case 6:
+            sort();
+            break;
+
+        case 7:
+            deleteAlt();
+            break;
+
+        case 8:
+            insertEleOrder();
+            break;
+
+        case -1:
+            exit(0);
+
+        default:
+            printf("Enter correct value...");
+            break;
+        }
+    }
 }
 // plsss check outputttttttttt
+// check how to take output of a function and give as input in another function

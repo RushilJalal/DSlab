@@ -65,13 +65,13 @@ node *deleteAtPos(node *head, int pos)
     }
 }
 
-node *insertAfter(node *head, int ele)
+node *insertAfter(node *head, int ele, int eleAfter)
 {
     node *current = head;
     node *temp = malloc(sizeof(node));
     temp->prev = NULL;
     temp->data = ele;
-    while (current->data != ele)
+    while (current->data != eleAfter)
     {
         current = current->next;
     }
@@ -82,7 +82,7 @@ node *insertAfter(node *head, int ele)
     return;
 }
 
-node *insertBefore(node *head, int ele)
+node *insertBefore(node *head, int ele, int eleBefore)
 {
     node *current = head;
     node *temp = malloc(sizeof(node));
@@ -115,16 +115,29 @@ void traverse(node *head)
 
 void reverse(node *head)
 {
-    
+    node *current = head;
+    node *temp = NULL;
+    while (current != NULL)
+    {
+        temp = current->prev;
+        current->prev = current->next;
+        current->next = temp;
+
+        current = current->next;
+    }
+    if (temp == NULL)
+    {
+        head = temp->prev;
+    }
 }
 
-// Complete thissssss
+// verify the code works
 
 int main()
 {
     node *head;
     printf("Enter choice: ");
-    int choice, data, pos;
+    int choice, data, pos, ele1, ele2;
     scanf("%d", &choice);
     while (choice != 0)
     {
@@ -156,6 +169,19 @@ int main()
             scanf("%d", &pos);
             insertAtPos(head, data, pos);
             break;
+
+        case 4:
+            printf("Enter position to delete");
+            scanf("%d", &pos);
+            deleteAtPos(head, pos);
+            break;
+
+        case 5:
+            printf("Enter element to be inserted");
+            scanf("%d", &ele);
+            printf("Enter element after which ele1 is inserted");
+            scanf("%d", &ele2);
+            insertAfter(head, ele)
         }
     }
     return 0;
