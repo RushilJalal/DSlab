@@ -178,10 +178,29 @@ int main()
 
         case 5:
             printf("Enter element to be inserted");
-            scanf("%d", &ele);
+            scanf("%d", &ele1);
             printf("Enter element after which ele1 is inserted");
             scanf("%d", &ele2);
-            insertAfter(head, ele)
+            insertAfter(head, ele1, ele2);
+            break;
+
+        case 6:
+            printf("Enter element to be inserted: ");
+            scanf("%d", &ele1);
+            printf("Enter element to be inserted before of: ");
+            scanf("%d", &ele2);
+            break;
+
+        case 7:
+            traverse(head);
+            break;
+
+        case 8:
+            reverse(head);
+            break;
+
+        default:
+            break;
         }
     }
     return 0;

@@ -219,17 +219,24 @@ void deleteAlt()
 void insertEleOrder()
 {
     Node *temp = malloc(sizeof(Node));
-    Node *current = start;
-    printf("Enter element to be inserted: ");
+    printf("Enter data: ");
     scanf("%d", &temp->data);
-    while (current != NULL)
+    temp->link = NULL;
+
+    if (start == NULL || start->data >= temp->data)
     {
-        if (current->link->data > temp->data)
+        temp->link = start;
+        start = temp;
+    }
+    else
+    {
+        Node *current = start;
+        while (current->link != NULL && current->link->data < temp->data)
         {
-            temp->link = current->link;
-            current->link = temp;
+            current = current->link;
         }
-        current = current->link;
+        temp->link = current->link;
+        current->link = temp;
     }
 }
 
@@ -293,5 +300,3 @@ int main()
         }
     }
 }
-// plsss check outputttttttttt
-// check how to take output of a function and give as input in another function
