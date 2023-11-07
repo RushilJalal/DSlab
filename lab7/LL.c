@@ -237,19 +237,18 @@ int main()
 {
     Node *head;
     int choice = 0;
-    printf("Creating list...");
     createList();
     while (choice != -1)
     {
-        printf("Choose an option");
-        printf("1. Insert an element before another element");
-        printf("2. Insert an element after another element");
-        printf("3. Delete an element");
-        printf("4. Traverse the list");
-        printf("5. Reverse the list");
-        printf("6. Sort the list");
-        printf("7. Delete every alternate node");
-        printf("8. Insert element in sorted list such that order is maintained");
+        printf("1. Insert an element before another element\n");
+        printf("2. Insert an element after another element\n");
+        printf("3. Delete an element\n");
+        printf("4. Traverse the list\n");
+        printf("5. Reverse the list\n");
+        printf("6. Sort the list\n");
+        printf("7. Delete every alternate node\n");
+        printf("8. Insert element in sorted list such that order is maintained\n");
+        printf("Choose an option\n");
         scanf("%d", &choice);
         switch (choice)
         {
