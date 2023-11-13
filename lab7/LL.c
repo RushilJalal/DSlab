@@ -18,8 +18,7 @@ void createList()
         if (n != 0)
         {
             int data;
-            Node *newNode;
-            Node *current;
+            Node *newNode, *current;
             newNode = malloc(sizeof(Node));
             start = newNode;
             current = start;
