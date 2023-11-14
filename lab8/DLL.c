@@ -20,7 +20,6 @@ void insertAtEnd(int data)
     if (head == NULL)
     {
         head = temp;
-        printf("Empty DLL when trying to insert at end\n");
         return;
     }
 
@@ -54,7 +53,6 @@ void deleteAtEnd()
     }
     else
     {
-        // If there is only one element in the list
         head = NULL;
     }
 
@@ -68,11 +66,11 @@ node *insertAtPos(int data, int pos)
     temp->next = NULL;
     temp->prev = NULL;
 
-    if (pos == 0)
+    if (pos == 0) // if element is to be inserted at head
     {
         temp->next = head;
         head->prev = temp;
-        head = temp;
+        head = temp; // temp becomes the new head
         return head;
     }
 
@@ -295,14 +293,5 @@ int main()
             break;
         }
     }
-
-    // Free allocated memory before exiting
-    while (head != NULL)
-    {
-        node *temp = head;
-        head = head->next;
-        free(temp);
-    }
-
     return 0;
 }
