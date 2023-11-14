@@ -59,7 +59,7 @@ void traverse()
     }
 }
 
-void insertBefore() // inserts element before specified element
+void insertBefore()
 {
     int data, val, found = 0;
     Node *temp;
@@ -174,7 +174,7 @@ void reverseList()
     start = previous;
 }
 
-void sort() // working
+void sort()
 {
     Node *temp = malloc(sizeof(Node));
     for (Node *i = start; i->link != NULL; i = i->link)
