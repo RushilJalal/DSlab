@@ -70,8 +70,8 @@ void convertInfixToPrefix(char *expression)
 {
     int i, j;
     char output[20];
-    for (i = 0; expression[i] != '\0'; i++) // traversing backwards
-        ;
+    for (i = 0; expression[i] != '\0'; i++)
+        ; // traversing backwards
     i = i - 1;
     for (j = -1; i >= 0; i--)
     {
@@ -83,7 +83,7 @@ void convertInfixToPrefix(char *expression)
         {
             while (!isEmpty() && peek() != ')')
                 output[++j] = pop();
-            if (!isEmpty() && peek() != ')')
+            if (isEmpty() || peek() != ')')
             {
                 printf("Mismatched parentheses.\n");
                 return;
@@ -91,7 +91,7 @@ void convertInfixToPrefix(char *expression)
             else
                 pop();
         }
-        else// operator
+        else // operator
         {
             while (!isEmpty() && precedence(expression[i]) < precedence(peek()))
                 output[++j] = pop();

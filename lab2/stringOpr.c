@@ -12,7 +12,7 @@ int stringLength(const char str[])
 }
 
 // Function to concatenate two strings
-void stringConcatenate(char result[], const char str1[], const char str2[])
+void stringConcatenate(char result[], char str1[], char str2[])
 {
     int i, j;
 
@@ -30,7 +30,7 @@ void stringConcatenate(char result[], const char str1[], const char str2[])
 }
 
 // Function to compare two strings
-int stringCompare(const char str1[], const char str2[])
+int stringCompare(char str1[], char str2[])
 {
     int i = 0;
     while (str1[i] == str2[i])
