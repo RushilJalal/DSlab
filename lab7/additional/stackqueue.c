@@ -27,7 +27,6 @@ int pop(Node **top)
     Node *temp = *top;
     *top = (*top)->next;
     free(temp);
-
     return data;
 }
 
